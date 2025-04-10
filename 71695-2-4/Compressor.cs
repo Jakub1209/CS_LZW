@@ -29,6 +29,8 @@ public class Compressor
         // loop through the input string and look for the longest match in the dictionary
         for (int i = 0; i < input.Length; i++)
         {
+            // initialize a bool for exiting the main for loop when the EOF marker is met
+            bool exitMainForLoop = false;
             // initialize an empty string to contain the longest match
             string maxMatchedCharacters = "";
             // loop through the input once again, checking for a match in the dictionary
@@ -42,6 +44,12 @@ public class Compressor
                     // Console.WriteLine($"exists: maxMatchedCharacters: {maxMatchedCharacters}, input: {input[j]}"); // debug
                     // if yes, then add that char to the string
                     maxMatchedCharacters += input[j];
+                    // if the next character that could match would be out of bounds, exit the main for loop
+                    if (j + 1 >= input.Length)
+                    {
+                        exitMainForLoop = true;
+                        break;
+                    }
                 }
                 else
                 {
@@ -63,8 +71,10 @@ public class Compressor
             else
             {
                 compressedIndexes.Add(predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1);
-                // Console.WriteLine($"Found a match outside of the loop on the index: {predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1}"); // debug
+                // Console.WriteLine($"Found a match outside the loop on the index: {predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1}"); // debug
             }
+
+            if (exitMainForLoop) break;
             
             // for some reason the program breaks if we don't check for the length of the maxMatchedCharacters
             if (maxMatchedCharacters.Length > 1) i += maxMatchedCharacters.Length - 2;
