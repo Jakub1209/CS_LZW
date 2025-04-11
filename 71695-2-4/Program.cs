@@ -6,19 +6,7 @@ class Program
     {
         // string input = "LATA_OSA_KOŁO_NOSA_LATA_MUCHA_KOŁO_UCHA_LATA_BĄK_KOŁO_RĄK_LATA_OSA_KOŁO_NOSA_LATA_MUCHA_KOŁO_UCHA_LATA_BĄK_KOŁO_RĄK_LATA_OSA_KOŁO_NOSA_LATA_MUCHA_KOŁO_UCHA_LATA_BĄK_KOŁO_RĄK";
         string input = "DBCDDCBBBCDBADBADACBCABACBACDCBCACDACADDBAAADBDCBDDDABACBCCAAACBCDBCBDADDBBBBCCBDDDBBAADDCDCCDADBDCDCCACADCDCAADDCDBAAABBACCDBDABBDCDBCCBCADDDDACCCCCBCBADDCDDCDBBCDCCBDCDBDABDBBDAABBAACACABDACAAADACAABDBCAABADCCADDBCACACBAACA";
-        var (dictionary, indexes) = Compressor.GetFullDictionaryAndIndexes(input);
-
-        Console.WriteLine("dictionary:");
-        foreach (string s in dictionary)
-        {
-            Console.WriteLine(s);
-        }
-        
-        Console.WriteLine("indexes:");
-        foreach (int i in indexes)
-        {
-            Console.WriteLine($"index {i}, dictionaryEntry: {dictionary[i-1]}");
-        }
+        List<int> indexes = Compressor.GetCompressedIndexesList(input);
         
         List<string> predefinedDictionary = Compressor.CreatePredefinedDictionary(input);
         

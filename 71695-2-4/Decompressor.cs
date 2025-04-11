@@ -9,7 +9,7 @@ public class Decompressor
         // initialize a list containing the complete dictionary. This list will be constantly updated during the decompression
         List<string> completeDictionary = predefinedDictionary;
         // for each index in the compressedIndexes list, add the corresponding entry in the dictionary to the output
-        Console.WriteLine("Decompressing dictionary...");
+        // Console.WriteLine("Decompressing dictionary...");
         for (int i = 0; i < compressedIndexes.Count; i++)
         {
             // keep track of the current index for the dictionary entry
@@ -33,15 +33,15 @@ public class Decompressor
                 // add new dictionary entry to the dictionary
                 completeDictionary.Add(newDictionaryEntry);
             }
-            else
-            {
-                newDictionaryEntry = completeDictionary[compressedIndex];
-            }
+            // else
+            // {
+            //     newDictionaryEntry = completeDictionary[compressedIndex];
+            // }
             
-            Console.WriteLine($"compressedIndex: {compressedIndexes[i]}, completeDictionary[base0compressedIndex]: {completeDictionary[compressedIndex]}, completeDictionary[nextCompressedIndex][0]: {completeDictionary[nextCompressedIndex][0]}, Added entry: {newDictionaryEntry}");
+            // Console.WriteLine($"compressedIndex: {compressedIndexes[i]}, completeDictionary[base0compressedIndex]: {completeDictionary[compressedIndex]}, completeDictionary[nextCompressedIndex][0]: {completeDictionary[nextCompressedIndex][0]}, Added entry: {newDictionaryEntry}");
             // add the dictionary entry to the result list
             decompressedResult.Add(completeDictionary[compressedIndex]);
-            Console.WriteLine($"Decompressed entry: {completeDictionary[compressedIndex]}");
+            // Console.WriteLine($"Decompressed entry: {completeDictionary[compressedIndex]}");
         }
         
         return decompressedResult;
