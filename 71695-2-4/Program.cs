@@ -8,7 +8,7 @@ class Program
         string input = "DBCDDCBBBCDBADBADACBCABACBACDCBCACDACADDBAAADBDCBDDDABACBCCAAACBCDBCBDADDBBBBCCBDDDBBAADDCDCCDADBDCDCCACADCDCAADDCDBAAABBACCDBDABBDCDBCCBCADDDDACCCCCBCBADDCDDCDBBCDCCBDCDBDABDBBDAABBAACACABDACAAADACAABDBCAABADCCADDBCACACBAACA";
         List<int> indexes = Compressor.GetCompressedIndexesList(input);
         
-        List<string> predefinedDictionary = Compressor.CreatePredefinedDictionary(input);
+        List<string> predefinedDictionary = Dictionary.CreatePredefinedDictionary(input);
         
         List<string> decompressedResult = Decompressor.Decompress(predefinedDictionary, indexes);
         string result = string.Join("", decompressedResult);
