@@ -8,26 +8,5 @@ class Program
         string input = "DBCDDCBBBCDBADBADACBCABACBACDCBCACDACADDBAAADBDCBDDDABACBCCAAACBCDBCBDADDBBBBCCBDDDBBAADDCDCCDADBDCDCCACADCDCAADDCDBAAABBACCDBDABBDCDBCCBCADDDDACCCCCBCBADDCDDCDBBCDCCBDCDBDABDBBDAABBAACACABDACAAADACAABDBCAABADCCADDBCACACBAACA";
         UserInteraction.GreetUser();
         UserInteraction.RunProgram();
-        
-        // List<int> indexes = Compressor.GetCompressedIndexesList(input);
-        //
-        // List<string> predefinedDictionary = Dictionary.CreatePredefinedDictionary(input);
-        
-        // List<string> decompressedResult = Decompressor.Decompress(predefinedDictionary, indexes);
-        // string result = string.Join("", decompressedResult);
-        // Console.Write("decompressedResult: ");
-        // foreach (string s in decompressedResult)
-        // {
-        //     Console.Write(s);
-        // }
-        // Console.WriteLine();
-        //
-        // for (int i = 0; i < input.Length; i++)
-        // {
-        //     if (input[i] != result[i])
-        //     {
-        //         Console.Write($"There character on index {i} shoulbe be {input[i]}, not {result[i]}!");
-        //     }
-        // }
     }
 }

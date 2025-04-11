@@ -47,19 +47,17 @@ public class UserInteraction
             {
                 Console.WriteLine("I'm so glad! Let's do compressing once again!");
                 Console.WriteLine();
-                break;
+                return true;
             }
 
             if (key == ConsoleKey.N)
             {
-                Console.WriteLine("I've worked so hard on this algorithm... well...");
-                Console.WriteLine();
-                break;
+                Console.WriteLine("Goodbye! Have a beautiful day and don't forget to smile! :D");
+                return false;
             }
             
             Console.WriteLine("You have pressed an incorrect key! Please try again (Y/N): ");
         }
-        return true;
     }
 
     static void InteractionForCompression(string input)
