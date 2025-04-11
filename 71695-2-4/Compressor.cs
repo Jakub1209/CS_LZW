@@ -41,8 +41,17 @@ public class Compressor
     // keep track of the pairs that have been added by adding their indexes to the list of compressed indexes
     static List<int> CreateCompressedIndexesList(ref List<string> predefinedDictionaryWithPairs, string input)
     {
+        // initialize a new list to hold the compressed indexes
         List<int> compressedIndexes = new List<int>();
-        
+        // loop through the input string looking for matches in the dictionary and add them to the list
+        LoopThroughTheInput(ref predefinedDictionaryWithPairs, ref compressedIndexes, input);
+        // return the list of compressed indexes
+        return compressedIndexes;
+    }
+
+    static void LoopThroughTheInput(ref List<string> predefinedDictionaryWithPairs, ref List<int> compressedIndexes,
+        string input)
+    {
         for (int i = 0; i < input.Length; i++)
         {
             // initialize a bool for exiting the main for loop when the EOF marker is met
@@ -57,53 +66,30 @@ public class Compressor
                 ref exitMainForLoop,
                 input,
                 i
-                );
-            // CheckForConditionsOutsideLoop(
-            //     ref predefinedDictionaryWithPairs,
-            //     ref compressedIndexes,
-            //     ref maxMatchedCharacters,
-            //     i
-            //     );
-
-            if (!predefinedDictionaryWithPairs.Contains(maxMatchedCharacters))
-            {
-                // Console.WriteLine($"added: {maxMatchedCharacters}, maxMatchedCharacters.length: {maxMatchedCharacters.Length}"); // debug
-                // add the longest match to the current dictionary
-                predefinedDictionaryWithPairs.Add(maxMatchedCharacters);
-            }
-            else
-            {
-                compressedIndexes.Add(predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1);
-                // Console.WriteLine($"Found a match outside the loop on the index: {predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1}"); // debug
-            }
-
+            );
+            // notice if several criteria regarding the dictionary pairs are met
+            CheckForConditionsOutsideLoop(
+                ref predefinedDictionaryWithPairs,
+                ref compressedIndexes,
+                ref maxMatchedCharacters,
+                ref i
+            );
+            // if the code wants to exit the main loop, do it
             if (exitMainForLoop) break;
-            
-            // for some reason the program breaks if we don't check for the length of the maxMatchedCharacters
-            if (maxMatchedCharacters.Length > 1) i += maxMatchedCharacters.Length - 2;
         }
-        
-        return compressedIndexes;
     }
 
     static void CheckForConditionsOutsideLoop(
         ref List<string> predefinedDictionaryWithPairs, 
         ref List<int> compressedIndexes, 
         ref string maxMatchedCharacters,
-        int i
+        ref int i
         )
     {
-        if (!predefinedDictionaryWithPairs.Contains(maxMatchedCharacters))
-        {
-            // Console.WriteLine($"added: {maxMatchedCharacters}, maxMatchedCharacters.length: {maxMatchedCharacters.Length}"); // debug
-            // add the longest match to the current dictionary
-            predefinedDictionaryWithPairs.Add(maxMatchedCharacters);
-        }
-        else
-        {
-            compressedIndexes.Add(predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1);
-            // Console.WriteLine($"Found a match outside the loop on the index: {predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1}"); // debug
-        }
+        // if the matched characters aren't already in the dictionary, add the longest match to it
+        if (!predefinedDictionaryWithPairs.Contains(maxMatchedCharacters)) predefinedDictionaryWithPairs.Add(maxMatchedCharacters);
+        // if they are, simply add the compressed index to the indexes list
+        else compressedIndexes.Add(predefinedDictionaryWithPairs.IndexOf(maxMatchedCharacters) + 1);
         // for some reason the program breaks if we don't check for the length of the maxMatchedCharacters
         if (maxMatchedCharacters.Length > 1) i += maxMatchedCharacters.Length - 2;
     }
