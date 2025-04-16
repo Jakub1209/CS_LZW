@@ -19,7 +19,7 @@ public class JS_71695_Checker
     {
         // if any of the chars entered into the string are a control character, but it isn't a white space,
         // reject that string
-        if (JS_71695_input.Any(c => char.IsControl(c) && !char.IsWhiteSpace(c)))
+        if (JS_71695_input.Any(JS_71695_c => char.IsControl(JS_71695_c) && !char.IsWhiteSpace(JS_71695_c)))
         {
             Console.WriteLine("The string shouldn't contain control characters like these:\n" +
                               "- Null (0x00)\n" +
@@ -76,7 +76,8 @@ public class JS_71695_Checker
             // if not, write where the problem is
             if (JS_71695_input[JS_71695_i] != JS_71695_output[JS_71695_i])
             {
-                Console.WriteLine($"The character on index {JS_71695_i}: '{JS_71695_input[JS_71695_i]}' is not the same as the character on the output '{JS_71695_output[JS_71695_i]}'");
+                Console.WriteLine($"The character on index {JS_71695_i}: '{JS_71695_input[JS_71695_i]}' " +
+                                  $"is not the same as the character on the output '{JS_71695_output[JS_71695_i]}'");
             }
         }
 
